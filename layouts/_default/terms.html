@@ -1,0 +1,15 @@
+{{ define "main" }}
+<div style="padding: 100px 0; text-align: center;">
+  <h2 style="font-size: 1.8rem; letter-spacing: 0.5em; margin-bottom: 80px; font-weight: normal; color: #888;">TAGS</h2>
+  
+  <ul style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 25px;">
+    {{ range .Data.Terms }}
+    <li>
+      <a href="{{ .Page.Permalink }}" style="display: block; padding: 10px 30px; border: 1px solid #eee; border-radius: 40px; font-size: 0.9rem; color: #666;">
+        #{{ .Page.Title }} <span style="font-size: 0.7rem; color: #ccc; margin-left: 10px;">{{ .Count }}</span>
+      </a>
+    </li>
+    {{ end }}
+  </ul>
+</div>
+{{ end }}

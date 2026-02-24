@@ -1,0 +1,59 @@
+baseURL = "https://tmasumolikebirds96gm-lang.github.io/toyofuku-masaya-archive/"
+languageCode = "ja"
+title = "日々鳥景アーカイブ"
+
+# これがPage Bundles（記事画像）と共通画像を共存させる唯一の組み合わせです
+canonifyURLs = true
+relativeURLs = false
+
+[pagination]
+  pagerSize = 10
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[params]
+    author = "豊福雅哉"
+    description = "豊福雅哉による野鳥と風景のデジタルアーカイブ。"
+    google_verify = "f1pRUgA1p1dXFI60_zoCpg1pTOdd3Ve6hD-RL-po7IY"
+    
+    # スラッシュで始めることで、トップページの画像を強制的に呼び出します
+    images = "/toyofuku-masaya-archive/images"
+    
+    x_url = "https://x.com/suzume_l0718"
+    portfolio_url = "https://tmasumolikebirds96gm-lang.github.io/masaya-toyofuku/"
+
+[menu]
+  [[menu.main]]
+    name = "HOME"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "記事一覧"
+    url = "/posts/"
+    weight = 2
+  [[menu.main]]
+    name = "日記"
+    url = "/categories/日記/"
+    weight = 11
+  [[menu.main]]
+    name = "野鳥"
+    url = "/categories/野鳥/"
+    weight = 12
+  [[menu.main]]
+    name = "動植物"
+    url = "/categories/動植物/"
+    weight = 13
+  [[menu.main]]
+    name = "資料"
+    url = "/categories/資料/"
+    weight = 14
+  [[menu.main]]
+    name = "タグ一覧"
+    url = "/tags/"
+    weight = 20
+  [[menu.main]]
+    name = "プロフィール"
+    url = "/profile/"
+    weight = 30
