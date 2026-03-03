@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tmasumolikebirds96gm-lang.github.io/toyofuku-masaya-archive/sitemap.xml
