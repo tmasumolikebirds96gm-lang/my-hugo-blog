@@ -1,0 +1,4 @@
+[params]
+  dateform = "2006年1月"
+
+↑追加

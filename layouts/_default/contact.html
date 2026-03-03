@@ -1,0 +1,38 @@
+{{ define "main" }}
+<div style="max-width: 700px; margin: 0 auto; padding: 40px 20px;">
+    <h1>{{ .Title }}</h1>
+    
+    <div style="margin-bottom: 30px; line-height: 1.6;">
+        {{ .Content }}
+    </div>
+
+    <form action="https://formspree.io/f/xgvlddal" method="POST">
+        
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 8px;">お名前</label>
+            <input type="text" name="name" required placeholder="山田 太郎" 
+                style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 8px;">メールアドレス</label>
+            <input type="email" name="_replyto" required placeholder="example@mail.com" 
+                style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 8px;">お問い合わせ内容</label>
+            <textarea name="message" rows="6" required placeholder="ご自由に入力してください" 
+                style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;"></textarea>
+        </div>
+
+        <input type="text" name="_gotcha" style="display:none">
+
+        <button type="submit" 
+            style="background-color: #333; color: white; padding: 15px 30px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; width: 100%;">
+            メッセージを送信する
+        </button>
+
+    </form>
+    </div>
+{{ end }}
