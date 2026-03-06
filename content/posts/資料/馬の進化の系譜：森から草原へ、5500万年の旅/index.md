@@ -86,10 +86,14 @@ PETMによる急激な温暖化によって、北極圏の環境が激変
   <figure>
       <img src="photo4.webp" style="display: block; margin: 0 auto; max-width: 100%;" />
       <figcaption>
-          <h4 style="margin-top: 10px;">完成</h4>
+          <h4 style="margin-top: 10px;">↑完成した馬の蹄</h4>
       </figcaption>
   </figure>
 </div>
+
+
+
+
 
  **メモ：** 馬の足の「管骨（かんこつ）」の横にある細い骨は、かつての指の名残と言われている。
 
