@@ -82,12 +82,14 @@ PETMによる急激な温暖化によって、北極圏の環境が激変
 2. **移行期（3本指）：** 2000万年前ほどから気候が乾燥し森林が減少すると、馬たちは開けた草原へ出ざるを得なくなる。外敵から逃げるために「歩幅」と「速度」が必要になり、脚が長く進化し始める。
 3. **草原期（単指）：** 最終的に、最も力の効率が良い**中央の指**（中指）が巨大になる。他の指は退化して「副蹄」となった。これが現代の馬に見られる「蹄」となった。
 
-<figure>
-    <img src="photo4.webp" />
-    <figcaption>
-        <h4>完成した馬の蹄</h4>
-    </figcaption>
-</figure>
+<div style="text-align: center;">
+  <figure>
+      <img src="photo4.webp" style="display: block; margin: 0 auto; max-width: 100%;" />
+      <figcaption>
+          <h4 style="margin-top: 10px;">完成</h4>
+      </figcaption>
+  </figure>
+</div>
 
  **メモ：** 馬の足の「管骨（かんこつ）」の横にある細い骨は、かつての指の名残と言われている。
 
