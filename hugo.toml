@@ -22,7 +22,7 @@ relativeURLs = false
   custom_css = ["css/custom.css"]
 
 [markup.goldmark.renderer]
-  unsafe = true  # HTMLの埋め込みを許可
+  unsafe = true
 
 [menu]
   [[menu.main]]
