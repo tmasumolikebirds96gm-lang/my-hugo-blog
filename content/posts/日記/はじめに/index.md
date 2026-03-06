@@ -1,6 +1,6 @@
 ---
 title: "はじめに"
-date: 2019-12-20
+date: 2017-12-31
 draft: false
 image: "photo1.jpg"
 categories: ["日記",]
