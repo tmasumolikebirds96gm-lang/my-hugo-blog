@@ -21,8 +21,14 @@ relativeURLs = false
   portfolio_url = "https://tmasumolikebirds96gm-lang.github.io/masaya-toyofuku/"
   custom_css = ["css/custom.css"]
 
-[markup.goldmark.renderer]
-  unsafe = true
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+
+  [markup.tableOfContents]
+    endLevel = 3
+    ordered = true
+    startLevel = 2
 
 [menu]
   [[menu.main]]

@@ -12,6 +12,17 @@
       </div>
       {{ end }}
     </header>
+
+    {{ if .Params.toc }}
+    <nav class="post-toc">
+      <details>
+        <summary class="toc-title">CONTENTS</summary>
+        <div class="toc-body">
+          {{ .TableOfContents }}
+        </div>
+      </details>
+    </nav>
+    {{ end }}
     
     <div class="post-content">
       {{ .Content }}
@@ -53,7 +64,6 @@
 </div>
 
 <style>
-  /* ページ全体が横に揺れるのを物理的に防ぐ */
   html, body {
     overflow-x: hidden;
     width: 100%;
@@ -61,8 +71,90 @@
     padding: 0;
   }
 
+  /* スムーススクロールを追加 */
+  html {
+    scroll-behavior: smooth;
+  }
+
   .container {
     box-sizing: border-box;
+  }
+
+  .post-toc {
+    background: #fafafa;
+    margin: 20px 0 40px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    display: table;
+    min-width: 280px;
+    max-width: 100%;
+    border: 1px solid #f0f0f0;
+    box-sizing: border-box;
+  }
+
+  .toc-title {
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: #999;
+    font-weight: bold;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+  
+  .toc-title::-webkit-details-marker { display: none; }
+
+  .toc-title::before {
+    content: '▶';
+    display: inline-block;
+    font-size: 0.6rem;
+    margin-right: 12px;
+    transition: transform 0.2s;
+    color: #ccc;
+  }
+
+  details[open] .toc-title::before {
+    transform: rotate(90deg);
+  }
+
+  .toc-body {
+    padding: 0 20px 20px 40px; /* 数字を入れるために左の余白を少し増やしました */
+    text-align: left;
+  }
+
+  /* 数字(decimal)を復活させる設定 */
+  .post-toc nav ul {
+    list-style: decimal !important; /* 数字を表示 */
+    padding-left: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+
+  .post-toc nav li {
+    display: list-item !important; /* blockからlist-itemに変更（数字を出すため） */
+    margin-bottom: 8px !important;
+    line-height: 1.5;
+    color: #999; /* 数字の色を少し薄く */
+  }
+
+  .post-toc nav ul ul {
+    padding-left: 1.5rem !important;
+    margin-top: 5px !important;
+    list-style: decimal !important;
+  }
+
+  .post-toc a {
+    text-decoration: none;
+    color: #666;
+    display: inline;
+  }
+
+  .post-toc a:hover {
+    color: #000;
+    text-decoration: underline;
   }
 
   .post-content {
@@ -71,7 +163,12 @@
     font-size: 1.05rem; 
     text-align: left;
     overflow-wrap: break-word;
-    word-break: break-word; /* 本文も念のため */
+    word-break: break-word;
+  }
+
+  /* 見出しに少し余白を作る（ジャンプした時のため） */
+  .post-content h2, .post-content h3 {
+    scroll-margin-top: 20px;
   }
 
   .post-content p {

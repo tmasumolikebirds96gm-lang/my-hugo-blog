@@ -222,6 +222,8 @@
       </div>
       
     </header>
+
+    
     
     <div class="post-content">
       <p>はじめに</p>
@@ -264,7 +266,6 @@
 </div>
 
 <style>
-   
   html, body {
     overflow-x: hidden;
     width: 100%;
@@ -272,8 +273,90 @@
     padding: 0;
   }
 
+   
+  html {
+    scroll-behavior: smooth;
+  }
+
   .container {
     box-sizing: border-box;
+  }
+
+  .post-toc {
+    background: #fafafa;
+    margin: 20px 0 40px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    display: table;
+    min-width: 280px;
+    max-width: 100%;
+    border: 1px solid #f0f0f0;
+    box-sizing: border-box;
+  }
+
+  .toc-title {
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: #999;
+    font-weight: bold;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+  
+  .toc-title::-webkit-details-marker { display: none; }
+
+  .toc-title::before {
+    content: '▶';
+    display: inline-block;
+    font-size: 0.6rem;
+    margin-right: 12px;
+    transition: transform 0.2s;
+    color: #ccc;
+  }
+
+  details[open] .toc-title::before {
+    transform: rotate(90deg);
+  }
+
+  .toc-body {
+    padding: 0 20px 20px 40px;  
+    text-align: left;
+  }
+
+   
+  .post-toc nav ul {
+    list-style: decimal !important;  
+    padding-left: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+
+  .post-toc nav li {
+    display: list-item !important;  
+    margin-bottom: 8px !important;
+    line-height: 1.5;
+    color: #999;  
+  }
+
+  .post-toc nav ul ul {
+    padding-left: 1.5rem !important;
+    margin-top: 5px !important;
+    list-style: decimal !important;
+  }
+
+  .post-toc a {
+    text-decoration: none;
+    color: #666;
+    display: inline;
+  }
+
+  .post-toc a:hover {
+    color: #000;
+    text-decoration: underline;
   }
 
   .post-content {
@@ -282,7 +365,12 @@
     font-size: 1.05rem; 
     text-align: left;
     overflow-wrap: break-word;
-    word-break: break-word;  
+    word-break: break-word;
+  }
+
+   
+  .post-content h2, .post-content h3 {
+    scroll-margin-top: 20px;
   }
 
   .post-content p {
