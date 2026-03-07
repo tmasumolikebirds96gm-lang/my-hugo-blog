@@ -62,6 +62,14 @@ relativeURLs = false
     url = "/profile/"
     weight = 30
   [[menu.main]]
-    name = "お問い合わせ"
+    name = "連絡"
     url = "/contact/"
     weight = 40
+
+  [[menu.main]]
+    name = "検索"
+    url = "/search/"
+    weight = 50
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]    

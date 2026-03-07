@@ -71,5 +71,7 @@
     <loc>http://localhost:1313/toyofuku-masaya-archive/contact/</loc>
   </url><url>
     <loc>http://localhost:1313/toyofuku-masaya-archive/profile/</loc>
+  </url><url>
+    <loc>http://localhost:1313/toyofuku-masaya-archive/search/</loc>
   </url>
 </urlset>

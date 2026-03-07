@@ -1,0 +1,60 @@
+{{ define "main" }}
+<div class="container" role="main">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <h2 style="margin-top: 50px;">サイト内検索</h2>
+            <input type="text" id="search-input" placeholder="検索ワードを入力..." style="width: 100%; padding: 15px; font-size: 20px; border: 2px solid #0085a1; border-radius: 5px; outline: none;">
+            <hr>
+            <div id="search-results"></div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.6.2/fuse.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+    const resultsArea = document.getElementById('search-results');
+    const input = document.getElementById('search-input');
+
+    try {
+        // 【重要】パスを絶対URLに変換して確実に取得する
+        const response = await fetch('{{ "index.json" | absURL }}');
+        
+        if (!response.ok) throw new Error('JSONが見つかりません');
+        const data = await response.json();
+        
+        // Fuse.jsの設定
+        const fuse = new Fuse(data, {
+            keys: ['title', 'summary'],
+            threshold: 0.4, // 少し厳しめに検索
+            minMatchCharLength: 1
+        });
+
+        input.addEventListener('input', (e) => {
+            const query = e.target.value;
+            const results = fuse.search(query);
+            
+            if (query.length > 0) {
+                if (results.length > 0) {
+                    resultsArea.innerHTML = results.map(res => `
+                        <div style="margin-bottom: 30px;">
+                            <h3 style="margin-top: 0;"><a href="${res.item.permalink}" style="color: #0085a1; text-decoration: none;">${res.item.title}</a></h3>
+                            <p style="color: #666; font-size: 0.9rem;">${res.item.summary}</p>
+                        </div>
+                    `).join('');
+                } else {
+                    resultsArea.innerHTML = '<p>一致する記事が見つかりません</p>';
+                }
+            } else {
+                resultsArea.innerHTML = '<p>キーワードを入力してください</p>';
+            }
+        });
+
+    } catch (err) {
+        console.error("エラー:", err);
+        resultsArea.innerHTML = '<p style="color:red;">データの読み込みに失敗しました。index.jsonが生成されているか確認してください。</p>';
+    }
+});
+</script>
+{{ end }}

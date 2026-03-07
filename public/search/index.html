@@ -3,7 +3,7 @@
 <head><script src="/toyofuku-masaya-archive/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=toyofuku-masaya-archive/livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>資料 | 日々鳥景アーカイブ</title>
+  <title>検索 | 日々鳥景アーカイブ</title>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -209,32 +209,64 @@
   <main>
     <div class="container">
       
-<div style="padding: 100px 0 120px; text-align: center;">
-  
-  <h2 style="font-size: 1.6rem; letter-spacing: 0.5em; color: #999; font-weight: normal; margin-bottom: 50px; text-transform: uppercase; font-family: 'Georgia', serif;">
-    資料
-  </h2>
-
-  <div style="display: flex; flex-direction: column; gap: 40px; align-items: center;">
-    
-      <article style="display: flex; gap: 40px; align-items: center; width: 100%; max-width: 600px; justify-content: center;">
-        
-        <time style="font-size: 0.85rem; color: #ccc; font-family: 'Georgia', serif; min-width: 100px; text-align: right;">
-          2026.03.01
-        </time>
-
-        <h3 style="margin: 0; font-weight: normal; text-align: left; flex: 1;">
-          <a href="http://localhost:1313/toyofuku-masaya-archive/posts/%E8%B3%87%E6%96%99/%E9%A6%AC%E3%81%AE%E9%80%B2%E5%8C%96%E3%81%AE%E7%B3%BB%E8%AD%9C%E6%A3%AE%E3%81%8B%E3%82%89%E8%8D%89%E5%8E%9F%E3%81%B85500%E4%B8%87%E5%B9%B4%E3%81%AE%E6%97%85/" style="font-size: 1.25rem; letter-spacing: 0.05em; color: #333; text-decoration: none;">
-            馬の進化の系譜：森から草原へ、5500万年の旅
-          </a>
-        </h3>
-
-      </article>
-    
-  </div>
-
-  
+<div class="container" role="main">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <h2 style="margin-top: 50px;">サイト内検索</h2>
+            <input type="text" id="search-input" placeholder="検索ワードを入力..." style="width: 100%; padding: 15px; font-size: 20px; border: 2px solid #0085a1; border-radius: 5px; outline: none;">
+            <hr>
+            <div id="search-results"></div>
+        </div>
+    </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.6.2/fuse.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+    const resultsArea = document.getElementById('search-results');
+    const input = document.getElementById('search-input');
+
+    try {
+        
+        const response = await fetch('http:\/\/localhost:1313\/toyofuku-masaya-archive\/index.json');
+        
+        if (!response.ok) throw new Error('JSONが見つかりません');
+        const data = await response.json();
+        
+        
+        const fuse = new Fuse(data, {
+            keys: ['title', 'summary'],
+            threshold: 0.4, 
+            minMatchCharLength: 1
+        });
+
+        input.addEventListener('input', (e) => {
+            const query = e.target.value;
+            const results = fuse.search(query);
+            
+            if (query.length > 0) {
+                if (results.length > 0) {
+                    resultsArea.innerHTML = results.map(res => `
+                        <div style="margin-bottom: 30px;">
+                            <h3 style="margin-top: 0;"><a href="${res.item.permalink}" style="color: #0085a1; text-decoration: none;">${res.item.title}</a></h3>
+                            <p style="color: #666; font-size: 0.9rem;">${res.item.summary}</p>
+                        </div>
+                    `).join('');
+                } else {
+                    resultsArea.innerHTML = '<p>一致する記事が見つかりません</p>';
+                }
+            } else {
+                resultsArea.innerHTML = '<p>キーワードを入力してください</p>';
+            }
+        });
+
+    } catch (err) {
+        console.error("エラー:", err);
+        resultsArea.innerHTML = '<p style="color:red;">データの読み込みに失敗しました。index.jsonが生成されているか確認してください。</p>';
+    }
+});
+</script>
 
     </div>
   </main>
