@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <title>{{ if .IsHome }}{{ .Site.Title }} | 豊福 雅哉{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
   
   {{ if .Description }}
     <meta name="description" content="{{ .Description }}">
@@ -198,7 +198,7 @@
       <a href="{{ .Site.Params.portfolio_url | default "#" }}" target="_blank" rel="noopener">PORTFOLIO</a>
     </div>
     <div class="footer-copy">
-      <p>&copy; {{ now.Year }} {{ .Site.Title }}</p>
+      <p>&copy; {{ now.Year }} ◯◯ ◯◯ ({{ .Site.Title }})</p>
       <p>掲載画像の無断転載・二次利用を固く禁じます。</p>
     </div>
   </footer>
