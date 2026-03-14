@@ -1,23 +1,31 @@
 {{ define "main" }}
-<div style="padding: 100px 0 120px; text-align: center;">
+<div style="padding: 80px 0 120px; text-align: center;">
   
-  <h2 style="font-size: 1.6rem; letter-spacing: 0.5em; color: #999; font-weight: normal; margin-bottom: 50px; text-transform: uppercase; font-family: 'Georgia', serif;">
+  <h2 style="font-size: 1.4rem; letter-spacing: 0.4em; color: #666; font-weight: normal; margin-bottom: 60px; text-transform: uppercase; font-family: 'Georgia', serif;">
     {{ .Title }}
   </h2>
 
-  <div style="display: flex; flex-direction: column; gap: 40px; align-items: center;">
+  <div style="display: flex; flex-direction: column; gap: 60px; align-items: center;">
     {{ range .Paginator.Pages }}
-      <article style="display: flex; gap: 40px; align-items: center; width: 100%; max-width: 600px; justify-content: center;">
+      <article style="width: 100%; max-width: 600px; text-align: left;">
         
-        <time style="font-size: 0.85rem; color: #ccc; font-family: 'Georgia', serif; min-width: 100px; text-align: right;">
-          {{ .Date.Format "2006.01.02" }}
-        </time>
+        <a href="{{ .Permalink }}" style="text-decoration: none; display: block; group;">
+          <time style="font-size: 0.85rem; color: #888; font-family: 'Georgia', serif; display: block; margin-bottom: 10px;">
+            {{ .Date.Format "2006.01.02" }}
+          </time>
 
-        <h3 style="margin: 0; font-weight: normal; text-align: left; flex: 1;">
-          <a href="{{ .Permalink }}" style="font-size: 1.25rem; letter-spacing: 0.05em; color: #333; text-decoration: none;">
-            {{ .Title }}
-          </a>
-        </h3>
+          <h3 style="margin: 0 0 12px 0; font-weight: bold; line-height: 1.4;">
+            <span style="font-size: 1.3rem; letter-spacing: 0.02em; color: #1a1a1a; border-bottom: 1px solid transparent; transition: border-color 0.3s;">
+              {{ .Title }}
+            </span>
+          </h3>
+
+          {{ if .Description }}
+          <p style="font-size: 0.9rem; color: #555; line-height: 1.8; margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+            {{ .Description }}
+          </p>
+          {{ end }}
+        </a>
 
       </article>
     {{ end }}
@@ -27,11 +35,15 @@
   <nav style="margin-top: 100px; font-family: 'Georgia', serif; font-size: 0.85rem; letter-spacing: 0.1em;">
     <div style="display: flex; justify-content: center; align-items: center; gap: 40px;">
       <div style="min-width: 100px; text-align: right;">
-        {{ if .Paginator.HasPrev }}<a href="{{ .Paginator.Prev.URL }}" style="color: #999; text-decoration: none; border-bottom: 1px solid #eee;">← NEWER</a>{{ end }}
+        {{ if .Paginator.HasPrev }}
+          <a href="{{ .Paginator.Prev.URL }}" style="color: #666; text-decoration: none; border-bottom: 1px solid #ccc;">← NEWER</a>
+        {{ end }}
       </div>
-      <div style="color: #ccc;">{{ .Paginator.PageNumber }} / {{ .Paginator.TotalPages }}</div>
+      <div style="color: #888;">{{ .Paginator.PageNumber }} / {{ .Paginator.TotalPages }}</div>
       <div style="min-width: 100px; text-align: left;">
-        {{ if .Paginator.HasNext }}<a href="{{ .Paginator.Next.URL }}" style="color: #999; text-decoration: none; border-bottom: 1px solid #eee;">OLDER →</a>{{ end }}
+        {{ if .Paginator.HasNext }}
+          <a href="{{ .Paginator.Next.URL }}" style="color: #666; text-decoration: none; border-bottom: 1px solid #ccc;">OLDER →</a>
+        {{ end }}
       </div>
     </div>
   </nav>
